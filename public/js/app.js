@@ -2100,6 +2100,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2128,6 +2130,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     this.$store.dispatch('getCategoryList');
@@ -2135,6 +2138,17 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     getCategoryList: function getCategoryList() {
       return this.$store.getters.getCategory;
+    }
+  },
+  methods: {
+    categoryDelete: function categoryDelete(id) {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/admin/category/delete/' + id).then(function (response) {
+        console.log(response);
+
+        _this.$store.dispatch('getCategoryList');
+      });
     }
   }
 });
@@ -38121,7 +38135,19 @@ var render = function () {
                       [_vm._v("Edit")]
                     ),
                     _vm._v(" "),
-                    _c("a", { attrs: { href: "" } }, [_vm._v("Delete")]),
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "" },
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            return _vm.categoryDelete(category.id)
+                          },
+                        },
+                      },
+                      [_vm._v("Delete")]
+                    ),
                   ],
                   1
                 ),

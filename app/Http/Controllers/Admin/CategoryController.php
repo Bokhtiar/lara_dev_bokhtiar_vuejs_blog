@@ -78,7 +78,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'category_name' => 'required',
+        ]);
+        $category = Category::find($id);
+        $category->category_name = $request->category_name;
+        $category->save();
+        return response()->json(['category'=>$category], 200);
     }
 
     /**
@@ -89,6 +95,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id)->delete();
+        return ['status'=>'delete successfully'];
     }
 }

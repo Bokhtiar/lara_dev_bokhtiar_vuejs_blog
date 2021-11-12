@@ -75,7 +75,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    categorySave: function categorySave() {
+    categoryUpdate: function categoryUpdate() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -83,7 +83,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this2.form.post('/admin/category/store').then(function (response) {
+                _this2.form.post('/admin/category/update/' + _this2.$route.params.id).then(function (response) {
                   console.log(response.data);
 
                   _this2.$router.push('/category');
@@ -982,7 +982,7 @@ var render = function () {
           { staticClass: "card-title" },
           [
             _c("p", { staticClass: "d-flex justify-content-between" }, [
-              _vm._v("Create Category"),
+              _vm._v("Update Category"),
             ]),
             _vm._v(" "),
             _c("router-link", { attrs: { to: "/category" } }, [

@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title">
-                    <p class="d-flex justify-content-between">Create Category</p>
+                    <p class="d-flex justify-content-between">Update Category</p>
                     <router-link to="/category">List of Category</router-link>
                 </div>
                 <div class="card-body">
@@ -39,8 +39,8 @@ export default {
   }),
 
   methods: {
-    async categorySave () {
-      this.form.post('/admin/category/store').then(response =>{
+    async categoryUpdate () {
+      this.form.post('/admin/category/update/'+this.$route.params.id).then(response =>{
         console.log(response.data)
         this.$router.push('/category');
       })

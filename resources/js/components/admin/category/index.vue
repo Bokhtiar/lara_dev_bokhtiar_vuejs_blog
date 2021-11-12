@@ -18,7 +18,7 @@
                         <tr v-for="(category,index) in getCategoryList" :key="category.id">
                             <th scope="row">{{ index +1 }}</th>
                             <td>{{ category.category_name }}</td>
-                            <td><router-link :to=" `/edit/category/${category.id}` ">Edit</router-link> <a href="">Delete</a></td>
+                            <td><router-link :to=" `/edit/category/${category.id}` ">Edit</router-link> <a @click.prevent ="categoryDelete(category.id)"  href="">Delete</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -27,6 +27,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     mounted() {
         this.$store.dispatch('getCategoryList')
@@ -34,6 +35,14 @@ export default {
     computed:{
         getCategoryList(){
             return this.$store.getters.getCategory
+        }
+    },
+    methods:{
+        categoryDelete(id){
+            axios.get('/admin/category/delete/'+id).then((response)=>{
+                console.log(response);
+                this.$store.dispatch('getCategoryList')
+            })
         }
     }
 }
