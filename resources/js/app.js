@@ -16,6 +16,16 @@ import { routes } from './route';
   const router = new VueRouter({
     routes // short for `routes: routes`
   })
+
+//vuex
+import Vuex from 'vuex'
+Vue.use(Vuex)
+import storeinfo from './store/store'
+
+const store = new Vuex.Store(
+    storeinfo
+)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -38,5 +48,6 @@ Vue.component('admin-main', require('./components/admin/AdminMaster.vue').defaul
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });

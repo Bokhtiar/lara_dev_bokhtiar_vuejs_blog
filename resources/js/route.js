@@ -9,6 +9,14 @@ export const routes = [
         path:'/category',
         component:CategoryList
     },
+    {
+        path:'/category/add',
+        component: () => import('./components/admin/category/create.vue'),
+    },
+    {
+        path:'/edit/category/:id',
+        component: () => import('./components/admin/category/edit.vue'),
+    },
 
 
   ]
