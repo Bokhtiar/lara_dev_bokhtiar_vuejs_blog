@@ -30,5 +30,8 @@ Route::group([ "as"=>'admin.' , "prefix"=>'admin' , "namespace"=>'Admin' , "midd
     Route::post('/blog/update/{id}', [App\Http\Controllers\Admin\BlogController::class, 'update']);
     Route::get('/blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy']);
 
+    //logout
+    Route::get('/logout', [App\Http\Controllers\Admin\AdminDashboardController::class, 'logout']);
+
 
 });
