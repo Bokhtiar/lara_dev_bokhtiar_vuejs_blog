@@ -13,6 +13,11 @@ export const routes = [
         path:'/blog/list',
         component: () => import('./components/user/blog/index.vue'),
     },
+    {
+        path:'/blog/detail/:id',
+        component: () => import('./components/user/blog/detail.vue'),
+    },
+
     //admin
     {
         path:'/admin/dashboard',

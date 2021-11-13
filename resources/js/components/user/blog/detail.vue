@@ -1,7 +1,6 @@
 <template>
     <div>
-
-    <section id="breadcrumbs" class="breadcrumbs">
+        <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
@@ -14,8 +13,7 @@
 
       </div>
     </section><!-- End Breadcrumbs -->
-
-    <!-- ======= Blog Section ======= -->
+         <!-- ======= Blog Single Section ======= -->
     <section id="blog" class="blog">
       <div class="container" data-aos="fade-up">
 
@@ -23,42 +21,30 @@
 
           <div class="col-lg-8 entries">
 
-            <article v-for="blog in blogs" :key="blog.id" class="entry">
+            <article class="entry entry-single">
 
               <div class="entry-img">
-                <img :src="imgurl(blog.image)" alt="" class="img-fluid">
+                <img :src="imgurl(item.image)" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">{{ blog.title }}</a>
+                <a href="blog-single.html">{{ item.title }}</a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
                   <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+
                 </ul>
               </div>
 
               <div class="entry-content">
-                <p>
-                  {{ blog.short_description }}
-                </p>
-                <div class="read-more">
-                  <router-link :to="`/blog/detail/${blog.id}`">Read More</router-link>
-                </div>
+                  {{ item.description }}
               </div>
 
-            </article><!-- End blog entry -->
-            <div class="blog-pagination">
-              <ul class="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-              </ul>
-            </div>
 
+            </article><!-- End blog entry -->
           </div><!-- End blog entries list -->
 
           <div class="col-lg-4">
@@ -87,12 +73,36 @@
 
               <h3 class="sidebar-title">Recent Posts</h3>
               <div class="sidebar-item recent-posts">
-
-                <div v-for="" class="post-item clearfix">
+                <div class="post-item clearfix">
                   <img src="assets/img/blog/blog-recent-1.jpg" alt="">
                   <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
                   <time datetime="2020-01-01">Jan 1, 2020</time>
                 </div>
+
+                <div class="post-item clearfix">
+                  <img src="assets/img/blog/blog-recent-2.jpg" alt="">
+                  <h4><a href="blog-single.html">Quidem autem et impedit</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="post-item clearfix">
+                  <img src="assets/img/blog/blog-recent-3.jpg" alt="">
+                  <h4><a href="blog-single.html">Id quia et et ut maxime similique occaecati ut</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="post-item clearfix">
+                  <img src="assets/img/blog/blog-recent-4.jpg" alt="">
+                  <h4><a href="blog-single.html">Laborum corporis quo dara net para</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="post-item clearfix">
+                  <img src="assets/img/blog/blog-recent-5.jpg" alt="">
+                  <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
+                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
               </div><!-- End sidebar recent posts-->
 
               <h3 class="sidebar-title">Tags</h3>
@@ -119,28 +129,29 @@
         </div>
 
       </div>
-    </section><!-- End Blog Section -->
+    </section><!-- End Blog Single Section -->
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
-    data(){
-        return {
-            blogs:[]
-        }
-    },
-    mounted(){
-        this.allBlog()
-    },
-    methods:{
-        imgurl(url){
+  data(){
+      return {
+          item:[],
+      }
+  },
+  methods:{
+      imgurl(url){
          return  "http://localhost:8000/"+url
       },
-        allBlog(){
-            axios.get('/blog').then((response)=>{
-                this.blogs = response.data.blog
-            })
-        }
-    }
-}
+      detail(){
+          axios.get('/blog/show/'+this.$route.params.id).then((response)=>{
+              this.item = response.data.blog
+          })
+      },
+  },
+  mounted(){
+      this.detail()
+  }
+};
 </script>
