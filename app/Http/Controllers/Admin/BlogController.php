@@ -16,7 +16,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $blog = Blog::with('category')->get();
+        return response()->json(['blog'=>$blog], 200);
     }
 
     /**
@@ -78,7 +79,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blog = Blog::find($id);
+        return response()->json(['blog'=>$blog] ,200);
     }
 
     /**
@@ -90,7 +92,31 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $blog = Blog::find($id);
+        $blog->title = $request->title;
+        $blog->category_id = $request->category_id;
+        $blog->short_description = $request->short_description;
+        $blog->description = $request->description;
+
+        if($request->image){
+            $image=$request->file('image');
+             if ($image){
+               $image_name=Str::random(20);
+               $ext=strtolower($image->getClientOriginalExtension());
+               $image_full_name=$image_name.'.'.$ext;
+               $upload_path='image/';
+               $image_url=$upload_path.$image_full_name;
+               $success=$image->move($upload_path,$image_full_name);
+                   if ($success) {
+                   $blog['image']=$image_url;
+                }
+            }
+        }else{
+            $blog['image']=$blog->image;
+        }
+
+        $blog->save();
+        return response()->json(['blog'=>$blog], 200);
     }
 
     /**
@@ -101,6 +127,7 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Blog::find($id)->delete();
+        return ['status'=>'delete successfully'];
     }
 }

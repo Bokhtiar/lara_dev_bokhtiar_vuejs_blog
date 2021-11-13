@@ -2292,7 +2292,17 @@ var routes = [{
 }, {
   path: '/blog',
   component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_admin_blog_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/admin/blog/index.vue */ "./resources/js/components/admin/blog/index.vue"));
+  }
+}, {
+  path: '/blog/create',
+  component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_admin_blog_create_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/admin/blog/create.vue */ "./resources/js/components/admin/blog/create.vue"));
+  }
+}, {
+  path: '/blog/edit/:id',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_admin_blog_edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/admin/blog/edit.vue */ "./resources/js/components/admin/blog/edit.vue"));
   }
 }];
 
@@ -2318,19 +2328,31 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/admin/category/index').then(function (response) {
         context.commit('categoryList', response.data.category);
       });
+    },
+    getBlogList: function getBlogList(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/admin/blog/index').then(function (response) {
+        context.commit('blogList', response.data.blog);
+      });
     }
   },
   mutations: {
     categoryList: function categoryList(state, responseData) {
       return state.category = responseData;
+    },
+    blogList: function blogList(state, responseData) {
+      return state.blog = responseData;
     }
   },
   state: {
-    category: []
+    category: [],
+    blog: []
   },
   getters: {
     getCategory: function getCategory(state) {
       return state.category;
+    },
+    getBlog: function getBlog(state) {
+      return state.blog;
     }
   }
 });
@@ -54893,7 +54915,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_admin_category_create_vue":1,"resources_js_components_admin_category_edit_vue":1,"resources_js_components_admin_blog_create_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_admin_category_create_vue":1,"resources_js_components_admin_category_edit_vue":1,"resources_js_components_admin_blog_index_vue":1,"resources_js_components_admin_blog_create_vue":1,"resources_js_components_admin_blog_edit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

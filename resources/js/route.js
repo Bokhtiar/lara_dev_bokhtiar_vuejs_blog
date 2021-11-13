@@ -19,7 +19,15 @@ export const routes = [
     },
     {
         path:'/blog',
+        component: () => import('./components/admin/blog/index.vue'),
+    },
+    {
+        path:'/blog/create',
         component: () => import('./components/admin/blog/create.vue'),
+    },
+    {
+        path:'/blog/edit/:id',
+        component: () => import('./components/admin/blog/edit.vue'),
     },
 
 

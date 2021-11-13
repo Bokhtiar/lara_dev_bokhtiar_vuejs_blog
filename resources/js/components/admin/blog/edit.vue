@@ -3,11 +3,11 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title d-flex justify-content-between">
-                    <h4 class="">Create Category</h4>
+                    <h4 class="">Update Blog</h4>
                     <router-link class="btn btn-primary" to="/blog">List of Blog</router-link>
                 </div>
                 <div class="card-body">
-                    <form  @submit.prevent="blogStore" enctype="multipart/form-data" class="form-gorup" >
+                    <form  @submit.prevent="blogUpdate" enctype="multipart/form-data" class="form-gorup" >
                         <div class="row">
                             <div class="col-sm-12 col-lg-6 col-mg-6">
                                 <div class="form-gorup">
@@ -62,7 +62,8 @@ data()
         };
     },
  mounted(){
-     this.$store.dispatch('getCategoryList')
+    this.$store.dispatch('getCategoryList'),
+    this.editBlog()
  },
  computed:{
      categories(){
@@ -71,11 +72,23 @@ data()
  },
 
   methods: {
+      //blog edit
+      editBlog(){
+          axios.get('/admin/blog/edit/'+this.$route.params.id).then((response)=>{
+              this.title = response.data.blog.title
+              this.category_id = response.data.blog.category_id
+              this.short_description = response.data.blog.short_description
+              this.description = response.data.blog.description
+              this.image = response.data.blog.image
+          })
+      },
+
+
     onImageChange(e){
         console.log(e.target.files[0]);
         this.image = e.target.files[0];
     },
-    blogStore(e) {
+    blogUpdate(e) {
         e.preventDefault();
         let currentObj = this;
         const config = {
@@ -87,7 +100,7 @@ data()
         formData.append('category_id', this.category_id);
         formData.append('short_description', this.short_description);
         formData.append('description', this.description);
-        axios.post('/admin/blog/store', formData, config)
+        axios.post('/admin/blog/update/'+this.$route.params.id, formData, config)
         .then((response) => {
             console.log(response)
             this.$router.push('/blog');
@@ -96,6 +109,9 @@ data()
             currentObj.output = error;
         });
     },
+
+
+
   },
   ready() {
 
