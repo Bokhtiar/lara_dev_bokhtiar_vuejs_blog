@@ -2,6 +2,19 @@ import AdminHome from './components/admin/AdminHome.vue'
 import CategoryList from './components/admin/category/index.vue'
 export const routes = [
     {
+        path:'/',
+        component: () => import('./components/user/UserHome.vue'),
+    },
+    {
+        path:'/about',
+        component: () => import('./components/user/about.vue'),
+    },
+    {
+        path:'/blog/list',
+        component: () => import('./components/user/blog/index.vue'),
+    },
+    //admin
+    {
         path:'/admin/dashboard',
         component:AdminHome
     },

@@ -39,6 +39,7 @@ const store = new Vuex.Store(
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('admin-main', require('./components/admin/AdminMaster.vue').default);
+Vue.component('user-main', require('./components/user/UserMaster.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
