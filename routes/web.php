@@ -23,4 +23,9 @@ Route::group([ "as"=>'admin.' , "prefix"=>'admin' , "namespace"=>'Admin' , "midd
     Route::get('/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit']);
     Route::post('/category/update/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'update']);
     Route::get('/category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
+    //blog
+    Route::get('/blog/index', [App\Http\Controllers\Admin\CategoryController::class, 'index']);
+    Route::post('/blog/store', [App\Http\Controllers\Admin\BlogController::class, 'store']);
+
+
 });

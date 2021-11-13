@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="card">
-            <div class="card-header">
-                <div class="justify-content-between d-flex">List Of Category</div>
+            <div class="card-header justify-content-between d-flex">
+                <h3 class="">List Of Category</h3>
                 <router-link to="/category/add" href>Add Category</router-link>
             </div>
             <div class="card-body">

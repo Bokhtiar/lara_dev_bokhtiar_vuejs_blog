@@ -2289,6 +2289,11 @@ var routes = [{
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_admin_category_edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/admin/category/edit.vue */ "./resources/js/components/admin/category/edit.vue"));
   }
+}, {
+  path: '/blog',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_admin_blog_create_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/admin/blog/create.vue */ "./resources/js/components/admin/blog/create.vue"));
+  }
 }];
 
 /***/ }),
@@ -38099,11 +38104,9 @@ var render = function () {
     _c("div", { staticClass: "card" }, [
       _c(
         "div",
-        { staticClass: "card-header" },
+        { staticClass: "card-header justify-content-between d-flex" },
         [
-          _c("div", { staticClass: "justify-content-between d-flex" }, [
-            _vm._v("List Of Category"),
-          ]),
+          _c("h3", {}, [_vm._v("List Of Category")]),
           _vm._v(" "),
           _c("router-link", { attrs: { to: "/category/add", href: "" } }, [
             _vm._v("Add Category"),
@@ -54890,7 +54893,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_admin_category_create_vue":1,"resources_js_components_admin_category_edit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_admin_category_create_vue":1,"resources_js_components_admin_category_edit_vue":1,"resources_js_components_admin_blog_create_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

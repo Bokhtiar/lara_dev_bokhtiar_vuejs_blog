@@ -17,6 +17,10 @@ export const routes = [
         path:'/edit/category/:id',
         component: () => import('./components/admin/category/edit.vue'),
     },
+    {
+        path:'/blog',
+        component: () => import('./components/admin/blog/create.vue'),
+    },
 
 
   ]
