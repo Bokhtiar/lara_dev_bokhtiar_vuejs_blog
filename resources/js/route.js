@@ -20,8 +20,9 @@ export const routes = [
 
     //admin
     {
-        path:'/admin/dashboard',
-        component:AdminHome
+        path:'/admin/dashboard/',
+        component: () => import('./components/admin/AdminHome.vue'),
+
     },
     {
         path:'/category',
@@ -46,6 +47,14 @@ export const routes = [
     {
         path:'/blog/edit/:id',
         component: () => import('./components/admin/blog/edit.vue'),
+    },
+    {
+        path:'/setting/:1',
+        component: () => import('./components/admin/setting/index.vue'),
+    },
+    {
+        path:'/setting/create',
+        component: () => import('./components/admin/setting/create.vue'),
     },
 
 

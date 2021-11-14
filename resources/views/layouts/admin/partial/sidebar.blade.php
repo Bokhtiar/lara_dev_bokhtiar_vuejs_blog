@@ -73,6 +73,23 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-pie-chart"></i>
               <p>
+                Web Setting's
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link to="/setting/1" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Setting's</p>
+                </router-link>
+              </li>
+            </ul>
+           </li>
+           <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-pie-chart"></i>
+              <p>
                 Logout
                 <i class="right fa fa-angle-left"></i>
               </p>

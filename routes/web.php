@@ -37,6 +37,11 @@ Route::group([ "as"=>'admin.' , "prefix"=>'admin' , "namespace"=>'Admin' , "midd
     Route::post('/blog/update/{id}', [App\Http\Controllers\Admin\BlogController::class, 'update']);
     Route::get('/blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy']);
 
+    //setting
+    Route::get('/setting/{id}', [App\Http\Controllers\Admin\SettingController::class, 'index']);
+    Route::post('/setting/store', [App\Http\Controllers\Admin\SettingController::class, 'store']);
+    Route::post('/setting/update/{id}', [App\Http\Controllers\Admin\SettingController::class, 'update']);
+
     //logout
     Route::get('/logout', [App\Http\Controllers\Admin\AdminDashboardController::class, 'logout']);
 
