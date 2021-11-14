@@ -11,6 +11,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -131,18 +133,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      blogs: []
+      blogs: [],
+      categories: []
     };
   },
   mounted: function mounted() {
-    this.allBlog();
+    this.allBlog(), this.category();
   },
   methods: {
     imgurl: function imgurl(url) {
@@ -151,8 +151,22 @@ __webpack_require__.r(__webpack_exports__);
     allBlog: function allBlog() {
       var _this = this;
 
-      axios.get('/blog').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/blog').then(function (response) {
         _this.blogs = response.data.blog;
+      });
+    },
+    category: function category() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/category').then(function (response) {
+        _this2.categories = response.data.category;
+      });
+    },
+    categoryWaysBlog: function categoryWaysBlog(id) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/category/ways/blog/' + id).then(function (response) {
+        _this3.blogs = response.data.blog;
       });
     }
   }
@@ -330,7 +344,52 @@ var render = function () {
               2
             ),
             _vm._v(" "),
-            _vm._m(2),
+            _c("div", { staticClass: "col-lg-4" }, [
+              _c("div", { staticClass: "sidebar" }, [
+                _c("h3", { staticClass: "sidebar-title" }, [_vm._v("Search")]),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("h3", { staticClass: "sidebar-title" }, [
+                  _vm._v("Categories"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "sidebar-item categories" }, [
+                  _c(
+                    "ul",
+                    _vm._l(_vm.categories, function (category) {
+                      return _c("li", { key: category.id }, [
+                        _c(
+                          "a",
+                          {
+                            on: {
+                              click: function ($event) {
+                                return _vm.categoryWaysBlog(category.id)
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(_vm._s(category.category_name) + " "),
+                            _c("span", [_vm._v("(25)")]),
+                          ]
+                        ),
+                      ])
+                    }),
+                    0
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("h3", { staticClass: "sidebar-title" }, [
+                  _vm._v("Recent Posts"),
+                ]),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c("h3", { staticClass: "sidebar-title" }, [_vm._v("Tags")]),
+                _vm._v(" "),
+                _vm._m(4),
+              ]),
+            ]),
           ]),
         ]
       ),
@@ -392,117 +451,65 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4" }, [
-      _c("div", { staticClass: "sidebar" }, [
-        _c("h3", { staticClass: "sidebar-title" }, [_vm._v("Search")]),
+    return _c("div", { staticClass: "sidebar-item search-form" }, [
+      _c("form", { attrs: { action: "" } }, [
+        _c("input", { attrs: { type: "text" } }),
         _vm._v(" "),
-        _c("div", { staticClass: "sidebar-item search-form" }, [
-          _c("form", { attrs: { action: "" } }, [
-            _c("input", { attrs: { type: "text" } }),
-            _vm._v(" "),
-            _c("button", { attrs: { type: "submit" } }, [
-              _c("i", { staticClass: "bi bi-search" }),
-            ]),
+        _c("button", { attrs: { type: "submit" } }, [
+          _c("i", { staticClass: "bi bi-search" }),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sidebar-item recent-posts" }, [
+      _c("div", { staticClass: "post-item clearfix" }, [
+        _c("img", {
+          attrs: { src: "assets/img/blog/blog-recent-1.jpg", alt: "" },
+        }),
+        _vm._v(" "),
+        _c("h4", [
+          _c("a", { attrs: { href: "blog-single.html" } }, [
+            _vm._v("Nihil blanditiis at in nihil autem"),
           ]),
         ]),
         _vm._v(" "),
-        _c("h3", { staticClass: "sidebar-title" }, [_vm._v("Categories")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "sidebar-item categories" }, [
-          _c("ul", [
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [
-                _vm._v("General "),
-                _c("span", [_vm._v("(25)")]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [
-                _vm._v("Lifestyle "),
-                _c("span", [_vm._v("(12)")]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [
-                _vm._v("Travel "),
-                _c("span", [_vm._v("(5)")]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [
-                _vm._v("Design "),
-                _c("span", [_vm._v("(22)")]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [
-                _vm._v("Creative "),
-                _c("span", [_vm._v("(8)")]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [
-                _vm._v("Educaion "),
-                _c("span", [_vm._v("(14)")]),
-              ]),
-            ]),
-          ]),
+        _c("time", { attrs: { datetime: "2020-01-01" } }, [
+          _vm._v("Jan 1, 2020"),
         ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sidebar-item tags" }, [
+      _c("ul", [
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("App")])]),
         _vm._v(" "),
-        _c("h3", { staticClass: "sidebar-title" }, [_vm._v("Recent Posts")]),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("IT")])]),
         _vm._v(" "),
-        _c("div", { staticClass: "sidebar-item recent-posts" }, [
-          _c("div", { staticClass: "post-item clearfix" }, [
-            _c("img", {
-              attrs: { src: "assets/img/blog/blog-recent-1.jpg", alt: "" },
-            }),
-            _vm._v(" "),
-            _c("h4", [
-              _c("a", { attrs: { href: "blog-single.html" } }, [
-                _vm._v("Nihil blanditiis at in nihil autem"),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("time", { attrs: { datetime: "2020-01-01" } }, [
-              _vm._v("Jan 1, 2020"),
-            ]),
-          ]),
-        ]),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Business")])]),
         _vm._v(" "),
-        _c("h3", { staticClass: "sidebar-title" }, [_vm._v("Tags")]),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Mac")])]),
         _vm._v(" "),
-        _c("div", { staticClass: "sidebar-item tags" }, [
-          _c("ul", [
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("App")])]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("IT")])]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Business")])]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Mac")])]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Design")])]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Office")])]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Creative")])]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Studio")])]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Smart")])]),
-            _vm._v(" "),
-            _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Tips")])]),
-            _vm._v(" "),
-            _c("li", [
-              _c("a", { attrs: { href: "#" } }, [_vm._v("Marketing")]),
-            ]),
-          ]),
-        ]),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Design")])]),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Office")])]),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Creative")])]),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Studio")])]),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Smart")])]),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Tips")])]),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Marketing")])]),
       ]),
     ])
   },
