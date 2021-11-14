@@ -16,6 +16,8 @@ Route::get('/category', [App\Http\Controllers\User\CategoryController::class, 'i
 Route::get('/category/ways/blog/{id}', [App\Http\Controllers\User\CategoryController::class, 'category_ways_blog']);
 Route::get('/recent/blog', [App\Http\Controllers\User\BlogController::class, 'recentBlog']);
 
+Route::get('/liveSearchBlog/{text}', [App\Http\Controllers\User\BlogController::class, 'search']);
+
 Route::group([ "as"=>'user.' , "prefix"=>'user' , "namespace"=>'User' , "middleware"=>['auth','user']],function(){
     Route::get('/dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
 });

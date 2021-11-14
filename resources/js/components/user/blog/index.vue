@@ -68,18 +68,12 @@
               <h3 class="sidebar-title">Search</h3>
               <div class="sidebar-item search-form">
                 <form action="">
-                  <input type="text">
-                  <button type="submit"><i class="bi bi-search"></i></button>
+                  <input type="text" v-model="keyword">
+                  <button disabled type="submit"><i class="bi bi-search"></i></button>
                 </form>
               </div><!-- End sidebar search formn-->
 
-              <h3 class="sidebar-title">Categories</h3>
-              <div class="sidebar-item categories">
-                <ul>
-                  <li v-for="category in categories" :key="category.id" ><a @click="categoryWaysBlog(category.id)" >{{ category.category_name }} <span>(25)</span></a></li>
 
-                </ul>
-              </div><!-- End sidebar categories-->
 
               <h3 class="sidebar-title">Recent Posts</h3>
               <div class="sidebar-item recent-posts">
@@ -90,6 +84,14 @@
                   <time datetime="2020-01-01">{{ item.created_at }}</time>
                 </div>
               </div><!-- End sidebar recent posts-->
+
+              <h3 class="sidebar-title">Categories</h3>
+              <div class="sidebar-item categories">
+                <ul>
+                  <li v-for="category in categories" :key="category.id" ><a @click="categoryWaysBlog(category.id)" >{{ category.category_name }} <span>(25)</span></a></li>
+
+                </ul>
+              </div><!-- End sidebar categories-->
 
               <h3 class="sidebar-title">Tags</h3>
               <div class="sidebar-item tags">
@@ -126,6 +128,7 @@ export default {
             blogs:[],
             categories:[],
             recentBlog:[],
+            keyword:'',
         }
     },
     mounted(){
@@ -133,6 +136,11 @@ export default {
         this.category(),
         this.recentBlogList()
     },
+    watch: {
+            keyword(after, before) {
+                this.getSearch();
+            }
+        },
     methods:{
         imgurl(url){
           return  "http://localhost:8000/"+url
@@ -154,7 +162,12 @@ export default {
         },
         recentBlogList(){
             axios.get('/recent/blog').then((response)=>{
-                console.log(response)
+                this.recentBlog = response.data.blog
+            })
+        },
+
+        getSearch(){
+            axios.get('/liveSearchBlog/'+this.keyword).then((response)=>{
                 this.recentBlog = response.data.blog
             })
         }

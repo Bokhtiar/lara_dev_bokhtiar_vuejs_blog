@@ -133,17 +133,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       blogs: [],
       categories: [],
-      recentBlog: []
+      recentBlog: [],
+      keyword: ''
     };
   },
   mounted: function mounted() {
     this.allBlog(), this.category(), this.recentBlogList();
+  },
+  watch: {
+    keyword: function keyword(after, before) {
+      this.getSearch();
+    }
   },
   methods: {
     imgurl: function imgurl(url) {
@@ -174,8 +182,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/recent/blog').then(function (response) {
-        console.log(response);
         _this4.recentBlog = response.data.blog;
+      });
+    },
+    getSearch: function getSearch() {
+      var _this5 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/liveSearchBlog/' + this.keyword).then(function (response) {
+        _this5.recentBlog = response.data.blog;
       });
     }
   }
@@ -357,35 +371,31 @@ var render = function () {
               _c("div", { staticClass: "sidebar" }, [
                 _c("h3", { staticClass: "sidebar-title" }, [_vm._v("Search")]),
                 _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _c("h3", { staticClass: "sidebar-title" }, [
-                  _vm._v("Categories"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "sidebar-item categories" }, [
-                  _c(
-                    "ul",
-                    _vm._l(_vm.categories, function (category) {
-                      return _c("li", { key: category.id }, [
-                        _c(
-                          "a",
-                          {
-                            on: {
-                              click: function ($event) {
-                                return _vm.categoryWaysBlog(category.id)
-                              },
-                            },
-                          },
-                          [
-                            _vm._v(_vm._s(category.category_name) + " "),
-                            _c("span", [_vm._v("(25)")]),
-                          ]
-                        ),
-                      ])
+                _c("div", { staticClass: "sidebar-item search-form" }, [
+                  _c("form", { attrs: { action: "" } }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.keyword,
+                          expression: "keyword",
+                        },
+                      ],
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.keyword },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.keyword = $event.target.value
+                        },
+                      },
                     }),
-                    0
-                  ),
+                    _vm._v(" "),
+                    _vm._m(2),
+                  ]),
                 ]),
                 _vm._v(" "),
                 _c("h3", { staticClass: "sidebar-title" }, [
@@ -424,6 +434,35 @@ var render = function () {
                   }),
                   0
                 ),
+                _vm._v(" "),
+                _c("h3", { staticClass: "sidebar-title" }, [
+                  _vm._v("Categories"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "sidebar-item categories" }, [
+                  _c(
+                    "ul",
+                    _vm._l(_vm.categories, function (category) {
+                      return _c("li", { key: category.id }, [
+                        _c(
+                          "a",
+                          {
+                            on: {
+                              click: function ($event) {
+                                return _vm.categoryWaysBlog(category.id)
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(_vm._s(category.category_name) + " "),
+                            _c("span", [_vm._v("(25)")]),
+                          ]
+                        ),
+                      ])
+                    }),
+                    0
+                  ),
+                ]),
                 _vm._v(" "),
                 _c("h3", { staticClass: "sidebar-title" }, [_vm._v("Tags")]),
                 _vm._v(" "),
@@ -491,14 +530,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sidebar-item search-form" }, [
-      _c("form", { attrs: { action: "" } }, [
-        _c("input", { attrs: { type: "text" } }),
-        _vm._v(" "),
-        _c("button", { attrs: { type: "submit" } }, [
-          _c("i", { staticClass: "bi bi-search" }),
-        ]),
-      ]),
+    return _c("button", { attrs: { disabled: "", type: "submit" } }, [
+      _c("i", { staticClass: "bi bi-search" }),
     ])
   },
   function () {

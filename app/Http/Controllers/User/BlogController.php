@@ -22,4 +22,9 @@ class BlogController extends Controller
         $blog = Blog::latest()->take(6)->get();
         return response()->json(['blog'=>$blog], 200);
     }
+
+    public function search($text){
+        $blog = Blog::where('title', 'LIKE','%'.$text.'%')->get();
+        return response()->json(['blog'=>$blog], 200);
+    }
 }
