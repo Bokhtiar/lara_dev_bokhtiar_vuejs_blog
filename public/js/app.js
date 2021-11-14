@@ -2285,6 +2285,11 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_components_user_about_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/user/about.vue */ "./resources/js/components/user/about.vue"));
   }
 }, {
+  path: '/contact',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_components_user_contact_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/user/contact.vue */ "./resources/js/components/user/contact.vue"));
+  }
+}, {
   path: '/blog/list',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_components_user_blog_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/user/blog/index.vue */ "./resources/js/components/user/blog/index.vue"));
@@ -55028,7 +55033,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_user_UserHome_vue":1,"resources_js_components_user_about_vue":1,"resources_js_components_user_blog_index_vue":1,"resources_js_components_user_blog_detail_vue":1,"resources_js_components_admin_category_create_vue":1,"resources_js_components_admin_category_edit_vue":1,"resources_js_components_admin_blog_index_vue":1,"resources_js_components_admin_blog_create_vue":1,"resources_js_components_admin_blog_edit_vue":1,"resources_js_components_admin_setting_index_vue":1,"resources_js_components_admin_setting_create_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_user_UserHome_vue":1,"resources_js_components_user_about_vue":1,"resources_js_components_user_contact_vue":1,"resources_js_components_user_blog_index_vue":1,"resources_js_components_user_blog_detail_vue":1,"resources_js_components_admin_category_create_vue":1,"resources_js_components_admin_category_edit_vue":1,"resources_js_components_admin_blog_index_vue":1,"resources_js_components_admin_blog_create_vue":1,"resources_js_components_admin_blog_edit_vue":1,"resources_js_components_admin_setting_index_vue":1,"resources_js_components_admin_setting_create_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

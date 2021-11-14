@@ -10,6 +10,10 @@ export const routes = [
         component: () => import('./components/user/about.vue'),
     },
     {
+        path:'/contact',
+        component: () => import('./components/user/contact.vue'),
+    },
+    {
         path:'/blog/list',
         component: () => import('./components/user/blog/index.vue'),
     },
