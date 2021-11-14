@@ -17,4 +17,9 @@ class BlogController extends Controller
         $blog = Blog::find($id);
         return response()->json(['blog'=>$blog], 200);
     }
+
+    public function recentBlog(){
+        $blog = Blog::latest()->take(6)->get();
+        return response()->json(['blog'=>$blog], 200);
+    }
 }

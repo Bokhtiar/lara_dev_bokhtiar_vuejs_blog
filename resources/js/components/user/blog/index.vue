@@ -84,10 +84,10 @@
               <h3 class="sidebar-title">Recent Posts</h3>
               <div class="sidebar-item recent-posts">
 
-                <div class="post-item clearfix">
-                  <img src="assets/img/blog/blog-recent-1.jpg" alt="">
-                  <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
-                  <time datetime="2020-01-01">Jan 1, 2020</time>
+                <div class="post-item clearfix" v-for="item in recentBlog" :key="item.id">
+                  <img :src="imgurl(item.image)" alt="">
+                  <h4><router-link :to="`/blog/detail/${item.id}`">{{ item.title }}</router-link></h4>
+                  <time datetime="2020-01-01">{{ item.created_at }}</time>
                 </div>
               </div><!-- End sidebar recent posts-->
 
@@ -125,11 +125,13 @@ export default {
         return {
             blogs:[],
             categories:[],
+            recentBlog:[],
         }
     },
     mounted(){
         this.allBlog(),
-        this.category()
+        this.category(),
+        this.recentBlogList()
     },
     methods:{
         imgurl(url){
@@ -148,6 +150,12 @@ export default {
         categoryWaysBlog(id){
             axios.get('/category/ways/blog/'+id).then((response)=>{
                 this.blogs = response.data.blog
+            })
+        },
+        recentBlogList(){
+            axios.get('/recent/blog').then((response)=>{
+                console.log(response)
+                this.recentBlog = response.data.blog
             })
         }
     }

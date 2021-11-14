@@ -138,11 +138,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       blogs: [],
-      categories: []
+      categories: [],
+      recentBlog: []
     };
   },
   mounted: function mounted() {
-    this.allBlog(), this.category();
+    this.allBlog(), this.category(), this.recentBlogList();
   },
   methods: {
     imgurl: function imgurl(url) {
@@ -167,6 +168,14 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/category/ways/blog/' + id).then(function (response) {
         _this3.blogs = response.data.blog;
+      });
+    },
+    recentBlogList: function recentBlogList() {
+      var _this4 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/recent/blog').then(function (response) {
+        console.log(response);
+        _this4.recentBlog = response.data.blog;
       });
     }
   }
@@ -383,11 +392,42 @@ var render = function () {
                   _vm._v("Recent Posts"),
                 ]),
                 _vm._v(" "),
-                _vm._m(3),
+                _c(
+                  "div",
+                  { staticClass: "sidebar-item recent-posts" },
+                  _vm._l(_vm.recentBlog, function (item) {
+                    return _c(
+                      "div",
+                      { key: item.id, staticClass: "post-item clearfix" },
+                      [
+                        _c("img", {
+                          attrs: { src: _vm.imgurl(item.image), alt: "" },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "h4",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/blog/detail/" + item.id } },
+                              [_vm._v(_vm._s(item.title))]
+                            ),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("time", { attrs: { datetime: "2020-01-01" } }, [
+                          _vm._v(_vm._s(item.created_at)),
+                        ]),
+                      ]
+                    )
+                  }),
+                  0
+                ),
                 _vm._v(" "),
                 _c("h3", { staticClass: "sidebar-title" }, [_vm._v("Tags")]),
                 _vm._v(" "),
-                _vm._m(4),
+                _vm._m(3),
               ]),
             ]),
           ]),
@@ -457,28 +497,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("button", { attrs: { type: "submit" } }, [
           _c("i", { staticClass: "bi bi-search" }),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sidebar-item recent-posts" }, [
-      _c("div", { staticClass: "post-item clearfix" }, [
-        _c("img", {
-          attrs: { src: "assets/img/blog/blog-recent-1.jpg", alt: "" },
-        }),
-        _vm._v(" "),
-        _c("h4", [
-          _c("a", { attrs: { href: "blog-single.html" } }, [
-            _vm._v("Nihil blanditiis at in nihil autem"),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("time", { attrs: { datetime: "2020-01-01" } }, [
-          _vm._v("Jan 1, 2020"),
         ]),
       ]),
     ])
